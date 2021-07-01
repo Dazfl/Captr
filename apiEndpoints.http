@@ -1,0 +1,53 @@
+### Test these API endpoints in VS Code using the REST Client extension
+###
+
+GET http://localhost:5000/BankAccount/123456789
+
+###
+
+POST http://localhost:5000/BankAccount/create
+Content-Type: application/json
+
+{
+    "accountNumber": "123456789",
+    "openingBalance": 1000,
+    "isActive": true
+}
+
+###
+
+POST http://localhost:5000/BankAccount/deposit
+Content-Type: application/json
+
+{
+    "accountNumber": "123456789",
+    "amount": 850
+}
+
+###
+
+POST http://localhost:5000/BankAccount/withdraw
+Content-Type: application/json
+
+{
+    "accountNumber": "123456789",
+    "amount": 750
+}
+
+###
+
+POST http://localhost:5000/BankAccount/activate
+Content-Type: application/json
+
+{
+    "accountNumber": "123456789"
+}
+
+###
+
+POST http://localhost:5000/BankAccount/deactivate
+Content-Type: application/json
+
+{
+    "accountNumber": "123456789"
+}
