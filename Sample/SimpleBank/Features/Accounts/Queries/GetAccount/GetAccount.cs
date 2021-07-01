@@ -1,9 +1,6 @@
 ﻿using Captr;
 using MediatR;
 using SimpleBank.Domain.Aggregates;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -21,16 +18,16 @@ namespace SimpleBank.Features.Accounts.Queries.GetAccount
 		/// </summary>
 		public class QueryHandler : IRequestHandler<Query, Response>
 		{
-			private readonly CaptrClient _captrClient;
+			private readonly CaptrClientServices<Account>.LoadEntity _loadAccount;
 
-			public QueryHandler(CaptrClient captrClient)
+			public QueryHandler(CaptrClientServices<Account>.LoadEntity loadAccount)
 			{
-				_captrClient = captrClient;
+				_loadAccount = loadAccount;
 			}
 
 			public async Task<Response> Handle(Query request, CancellationToken cancellationToken)
 			{
-				Account account = await _captrClient.LoadEntity<Account>(request.AccountNumber, cancellationToken);
+				Account account = await _loadAccount(request.AccountNumber, cancellationToken);
 
 				if (account == null)
 					return new Response(false, "The Account does not exist.", null);

@@ -3,17 +3,22 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30114.105
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Captr", "Src\Captr\Captr.csproj", "{5B7FA20F-259F-49CC-8B37-B752BCCC5B25}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Captr", "Src\Captr\Captr.csproj", "{5B7FA20F-259F-49CC-8B37-B752BCCC5B25}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Src", "Src", "{F0F854CF-E5B1-4A5F-A393-66011EBA1DB4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Captr.Storage.AzureCosmos", "Src\Captr.Storage.AzureCosmos\Captr.Storage.AzureCosmos.csproj", "{744294FD-E551-49F2-BC3B-C044D6151B24}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Captr.Storage.AzureCosmos", "Src\Captr.Storage.AzureCosmos\Captr.Storage.AzureCosmos.csproj", "{744294FD-E551-49F2-BC3B-C044D6151B24}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Captr.Storage.AzureTableStorage", "Src\Captr.Storage.AzureTableStorage\Captr.Storage.AzureTableStorage.csproj", "{96A5F86C-6708-4319-B9EE-05D34D52F2B6}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Sample", "Sample", "{03579008-660B-420C-913C-8D567208531F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimpleBank", "Sample\SimpleBank\SimpleBank.csproj", "{F8A13D56-512A-4105-9666-1BD4B8D3C900}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SimpleBank", "Sample\SimpleBank\SimpleBank.csproj", "{F8A13D56-512A-4105-9666-1BD4B8D3C900}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{84DB80BC-024C-436F-911C-2775A281A486}"
+	ProjectSection(SolutionItems) = preProject
+		README.md = README.md
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

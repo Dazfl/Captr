@@ -24,10 +24,10 @@ namespace SimpleBank.Features.Accounts.Commands.CreateAccount
 		/// </summary>
 		public class CommandHandler : IRequestHandler<Command, Response>
 		{
-			private readonly CaptrServices<Account>.LoadEntity _loadAccount;
-			private readonly CaptrServices<Account>.SaveEntityChanges _saveAccount;
+			private readonly CaptrClientServices<Account>.LoadEntity _loadAccount;
+			private readonly CaptrClientServices<Account>.SaveEntityChanges _saveAccount;
 
-			public CommandHandler(CaptrServices<Account>.LoadEntity loadAccount, CaptrServices<Account>.SaveEntityChanges saveAccount)
+			public CommandHandler(CaptrClientServices<Account>.LoadEntity loadAccount, CaptrClientServices<Account>.SaveEntityChanges saveAccount)
 			{
 				_loadAccount = loadAccount;
 				_saveAccount = saveAccount;

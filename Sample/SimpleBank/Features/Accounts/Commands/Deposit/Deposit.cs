@@ -21,23 +21,25 @@ namespace SimpleBank.Features.Accounts.Commands.Deposit
 		/// </summary>
 		public class CommandHandler : IRequestHandler<Command, Response>
 		{
-			private readonly CaptrClient _captrClient;
+			private readonly CaptrClientServices<Account>.LoadEntity _loadAccount;
+			private readonly CaptrClientServices<Account>.SaveEntityChanges _saveAccount;
 
-			public CommandHandler(CaptrClient captrClient)
+			public CommandHandler(CaptrClientServices<Account>.LoadEntity loadAccount, CaptrClientServices<Account>.SaveEntityChanges saveAccount)
 			{
-				_captrClient = captrClient;
+				_loadAccount = loadAccount;
+				_saveAccount = saveAccount;
 			}
 
 			public async Task<Response> Handle(Command request, CancellationToken cancellationToken)
 			{
 				// Does the account exist?
-				Account account = await _captrClient.LoadEntity<Account>(request.AccountNumber, cancellationToken);
+				Account account = await _loadAccount(request.AccountNumber, cancellationToken);
 				if (account == null)
 					return Response.Fail("Account does not exist.");
 
 				account.Deposit(request.Amount);
 
-				if (!await _captrClient.SaveEntityChanges(account, cancellationToken))
+				if (!await _saveAccount(account, cancellationToken))
 					return Response.Fail("Unable to deposit to this account at this time.");
 
 				return Response.Success;

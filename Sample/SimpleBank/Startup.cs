@@ -33,15 +33,19 @@ namespace SimpleBank
 		{
 			services.AddLogging();
 
-			string connectionString = "<Azure Table Storage Connection string goes here>";
+			// Depending on the storage being used, these details can be stored
+			// and retrieved from appsettings.json, etc.  The connection string
+			// here is for a locally running Storage Emulator
+			/// (See <see cref="https://docs.microsoft.com/en-us/azure/storage/common/storage-use-emulator"/> for more details about the Azure Storage Emulator)
+			string connectionString = "AccountName=devstoreaccount1;AccountKey=Eby8vdM02xNOcqFlqUwJPLlmEtlCDXJ1OUzFT50uSRZ6IFsuFq2UVErCz4I6tq/K1SZFPTOtr/KBHBeksoGMGw==;DefaultEndpointsProtocol=http;BlobEndpoint=http://127.0.0.1:10000/devstoreaccount1;QueueEndpoint=http://127.0.0.1:10001/devstoreaccount1;TableEndpoint=http://127.0.0.1:10002/devstoreaccount1;";
 			string eventTableName = "SimpleBankStreams";
 			string snapshotTableName = "SimpleBankSnapshots";
 
 			services.AddCaptr(options =>
 			{
 				options.SnapshotInterval = 10;
-				options.AddEventStorage(so => so.UseAzureTableStorageAsEventStore(connectionString, eventTableName));
-				options.AddSnapshotStorage(so => so.UseAzureTableStorageAsSnapshotStore(connectionString, snapshotTableName));
+				options.AddEventStorage(cob => cob.UseAzureTableStorageAsEventStore(connectionString, eventTableName));
+				options.AddSnapshotStorage(cob => cob.UseAzureTableStorageAsSnapshotStore(connectionString, snapshotTableName));
 			});
 			services.AddCaptrDelegates();
 
@@ -79,8 +83,8 @@ namespace SimpleBank
 	{
 		public static IServiceCollection AddCaptrDelegates(this IServiceCollection services)
 		{
-			services.AddDelegate<CaptrClient, CaptrServices<Account>.LoadEntity>(method => method.LoadEntity<Account>);
-			services.AddDelegate<CaptrClient, CaptrServices<Account>.SaveEntityChanges>(method => method.SaveEntityChanges<Account>);
+			services.AddDelegate<CaptrClient, CaptrClientServices<Account>.LoadEntity>(method => method.LoadEntity<Account>);
+			services.AddDelegate<CaptrClient, CaptrClientServices<Account>.SaveEntityChanges>(method => method.SaveEntityChanges<Account>);
 			return services;
 		}
 
@@ -89,11 +93,5 @@ namespace SimpleBank
 		{
 			return services.AddScoped(sp => DelegateFromService(sp.GetRequiredService<TService>()));
 		}
-	}
-
-	public class CaptrServices<TEntity>
-	{
-		public delegate Task<TEntity> LoadEntity(string entityId, CancellationToken cancellationToken);
-		public delegate Task<bool> SaveEntityChanges(TEntity entity, CancellationToken cancellationToken);
 	}
 }
