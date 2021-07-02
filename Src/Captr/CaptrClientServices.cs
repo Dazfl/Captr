@@ -14,7 +14,7 @@ namespace Captr
 	///		</para>
 	///		<para>
 	///			This allows the methods to be injected through dependency injection
-	///			into class constructors.  This helps with Unit Testing.
+	///			into class constructors.  This helps with Unit Testing (see the Sample for an example).
 	///		</para>
 	/// </summary>
 	/// <typeparam name="TEntity">Type of <typeparamref name="TEntity"/></typeparam>

@@ -6,7 +6,7 @@ using Microsoft.Azure.Cosmos.Table;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 
-namespace Captr.Extensions
+namespace Captr.DependencyInjection
 {
 	public static class CaptrOptionsBuilderExtensions
 	{

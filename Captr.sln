@@ -17,13 +17,12 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SimpleBank", "Sample\Simple
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{84DB80BC-024C-436F-911C-2775A281A486}"
 	ProjectSection(SolutionItems) = preProject
-		apiEndpoints.http = apiEndpoints.http
 		README.md = README.md
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{4226C26E-50C5-48DB-878C-E3C5AA1A233E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimpleBank.UnitTests", "Sample\SimpleBank.UnitTests\SimpleBank.UnitTests.csproj", "{951EF2A9-3FFE-42BF-AE94-ADE208E0D5F0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SimpleBank.UnitTests", "Sample\SimpleBank.UnitTests\SimpleBank.UnitTests.csproj", "{951EF2A9-3FFE-42BF-AE94-ADE208E0D5F0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

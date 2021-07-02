@@ -36,10 +36,7 @@ namespace Captr.Storage.AzureTableStorage
 				var operationResult = await table.ExecuteAsync(operation, cancellationToken);
 
 				if (operationResult.HttpStatusCode != StatusCodes.Status200OK)
-				{
-					_logger.LogWarning("Something went wrong with ExecuteAsync while attempting to retrieve a snapshot.");
 					return null;
-				}
 
 				var snapshotEntity = operationResult.Result as DynamicTableEntity;
 				var snapshotDescriptor = TableEntity.ConvertBack<SnapshotDescriptor>(snapshotEntity.Properties, null);

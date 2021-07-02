@@ -26,7 +26,7 @@ namespace Captr
 		/// <summary>
 		/// Load an entity by reconstructing state from stored snapshots and events
 		/// </summary>
-		/// <typeparam name="TEntity">Type of entity</typeparam>
+		/// <typeparam name="TEntity">Type of <see cref="AggregateRoot{TEntity}"/></typeparam>
 		/// <param name="entityId">Entity Id</param>
 		/// <param name="cancellationToken">Cancellation token</param>
 		/// <returns>Returns a <typeparamref name="TEntity"/> in its current state; <code>NULL</code> otherwise</returns>

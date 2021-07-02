@@ -1,21 +1,12 @@
-using Captr;
-using Captr.Extensions;
-using Captr.Storage.AzureTableStorage;
+using Captr.DependencyInjection;
 using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
 using SimpleBank.Domain.Aggregates;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading;
-using System.Threading.Tasks;
 
 namespace SimpleBank
 {
@@ -47,7 +38,7 @@ namespace SimpleBank
 				options.AddEventStorage(cob => cob.UseAzureTableStorageAsEventStore(connectionString, eventTableName));
 				options.AddSnapshotStorage(cob => cob.UseAzureTableStorageAsSnapshotStore(connectionString, snapshotTableName));
 			});
-			services.AddCaptrDelegates();
+			services.AddCaptrAggregate<Account>();
 
 			services.AddMediatR(typeof(Startup).Assembly);
 
@@ -76,22 +67,6 @@ namespace SimpleBank
 			{
 				endpoints.MapControllers();
 			});
-		}
-	}
-
-	public static class ServiceCollectionExtensions
-	{
-		public static IServiceCollection AddCaptrDelegates(this IServiceCollection services)
-		{
-			services.AddDelegate<CaptrClient, CaptrClientServices<Account>.LoadEntity>(method => method.LoadEntity<Account>);
-			services.AddDelegate<CaptrClient, CaptrClientServices<Account>.SaveEntityChanges>(method => method.SaveEntityChanges<Account>);
-			return services;
-		}
-
-		public static IServiceCollection AddDelegate<TService, TDelegate>(this IServiceCollection services, Func<TService, TDelegate> DelegateFromService)
-			where TDelegate : Delegate
-		{
-			return services.AddScoped(sp => DelegateFromService(sp.GetRequiredService<TService>()));
 		}
 	}
 }

@@ -17,12 +17,16 @@ public void ConfigureServices(IServiceCollection services)
 {
     services.AddLogging();
 
+    // Configure Event storage and Snapshot storage
     services.AddCaptr(options =>
     {
         options.AddEventStorage(cob => cob.UseAzureTableStorageAsEventStore("<connection string>", "<event table name>"));
         options.AddSnapshotStorage(cob => cob.UseAzureTableStorageAsSnapshotStorage("<connection string>", "<snapshot table name>"));
         options.SnapshotInterval = 10; // default is 100
     });
+    // Register each aggregate defined in the solution
+    services.AddCaptrAggregate<Account>();
+    ...
 }
 ```
 

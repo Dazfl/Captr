@@ -1,20 +1,19 @@
 ﻿using Captr.EventStorage;
 using Captr.Extensions;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Text.Json;
 using System.Threading;
 using System.Threading.Tasks;
 
 namespace Captr.Aggregates
 {
+	public abstract class AggregateRoot { }
+
 	/// <summary>
 	/// Base class that an aggregate MUST inherit in order to capture events
 	/// </summary>
 	/// <typeparam name="TEntity">Type of <see cref="AggregateRoot{TEntity}"/></typeparam>
-	public abstract class AggregateRoot<TEntity> : IAggregateRoot where TEntity : AggregateRoot<TEntity>
+	public abstract class AggregateRoot<TEntity> : AggregateRoot, IAggregateRoot where TEntity : AggregateRoot<TEntity>
 	{
 		private static readonly IReadOnlyCollection<RegisteredEventInfo> _registeredEvents;
 
