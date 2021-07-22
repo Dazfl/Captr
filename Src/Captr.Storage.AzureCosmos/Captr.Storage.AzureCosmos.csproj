@@ -8,6 +8,7 @@
     <RepositoryUrl>https://github.com/Dazfl/Captr</RepositoryUrl>
     <RepositoryType>GitHub</RepositoryType>
     <PackageTags>event sourcing, event, snapshot</PackageTags>
+    <Description>Azure Cosmos Storage provider for Captr</Description>
   </PropertyGroup>
 
   <ItemGroup>

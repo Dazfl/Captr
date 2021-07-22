@@ -7,6 +7,8 @@
     <RepositoryType>GitHub</RepositoryType>
     <RepositoryUrl>https://github.com/Dazfl/Captr</RepositoryUrl>
     <Version>1.0.0-RC1</Version>
+    <Description>Azure Table Storage provider for Captr</Description>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
   </PropertyGroup>
 
   <ItemGroup>

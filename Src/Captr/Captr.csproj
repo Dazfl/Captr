@@ -7,7 +7,7 @@
     <RepositoryType>GitHub</RepositoryType>
     <Description>A simple .NET Event Sourcing library</Description>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
-    <Version>1.0.0-RC1</Version>
+    <Version>1.0.0-RC2</Version>
     <PackageTags>event sourcing, event, snapshot</PackageTags>
   </PropertyGroup>
 
