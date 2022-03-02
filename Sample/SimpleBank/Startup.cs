@@ -27,11 +27,11 @@ namespace SimpleBank
 
             // Depending on the storage being used, these details can be stored
             // and retrieved from appsettings.json, etc. 
+            services.AddInMemoryEventStore();
+            services.AddInMemorySnapshotStore();
             services.AddCaptr(options =>
             {
                 options.SnapshotInterval = 10;
-                options.AddEventStorage(options => options.UseInMemoryAsEventStore());
-                options.AddSnapshotStorage(options => options.UseInMemoryAsSnapshotStore());
             });
             services.AddCaptrAggregate<Account>();
 

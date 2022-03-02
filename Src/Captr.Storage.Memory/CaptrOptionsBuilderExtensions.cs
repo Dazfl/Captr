@@ -1,20 +1,20 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using Captr.EventStorage;
+using Captr.SnapshotStorage;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace Captr.Storage.Memory
 {
     public static class CaptrOptionsBuilderExtensions
     {
-        public static CaptrOptionsBuilder UseInMemoryAsEventStore(this CaptrOptionsBuilder optionsBuilder)
+
+        public static IServiceCollection AddInMemoryEventStore(this IServiceCollection services)
         {
-            optionsBuilder.AddService(new ServiceDescriptor(typeof(InMemoryEventRepository), new InMemoryEventRepository()));
-            return optionsBuilder;
+            return services.AddSingleton<IEventRepository, InMemoryEventRepository>();
         }
 
-
-        public static CaptrOptionsBuilder UseInMemoryAsSnapshotStore(this CaptrOptionsBuilder optionsBuilder)
+        public static IServiceCollection AddInMemorySnapshotStore(this IServiceCollection services)
         {
-            optionsBuilder.AddService(new ServiceDescriptor(typeof(InMemorySnapshotRepository), new InMemorySnapshotRepository()));
-            return optionsBuilder;
+            return services.AddSingleton<ISnapshotRepository, InMemorySnapshotRepository>();
         }
     }
 }

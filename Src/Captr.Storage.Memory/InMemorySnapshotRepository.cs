@@ -5,11 +5,10 @@ namespace Captr.Storage.Memory
 {
     public class InMemorySnapshotRepository : ISnapshotRepository
     {
-        private readonly ImmutableList<SnapshotDescriptor> _snapshotStorage;
+        private readonly ImmutableList<SnapshotDescriptor> _snapshotStorage = ImmutableList<SnapshotDescriptor>.Empty;
 
         public InMemorySnapshotRepository()
         {
-            _snapshotStorage = ImmutableList<SnapshotDescriptor>.Empty;
         }
 
         public async Task<SnapshotDescriptor> GetSnapshotAsync(string streamId, CancellationToken cancellationToken = default)

@@ -2,7 +2,6 @@
 using Captr.EventStorage;
 using Captr.SnapshotStorage;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.DependencyInjection.Extensions;
 using System;
 
 namespace Captr.DependencyInjection
@@ -11,17 +10,19 @@ namespace Captr.DependencyInjection
     {
         public static IServiceCollection AddCaptr(this IServiceCollection services, Action<CaptrOptionsBuilder> options)
         {
-            if (options == null) throw new ArgumentNullException(nameof(options));
+            //if (options == null) throw new ArgumentNullException(nameof(options));
 
-            var optionsBuilder = new CaptrOptionsBuilder();
-            options(optionsBuilder);
+            //var optionsBuilder = new CaptrOptionsBuilder();
+            //options(optionsBuilder);
 
-            var servicesToAdd = optionsBuilder.GetServices();
-            services.Add(servicesToAdd);
-            var optionsToAdd = optionsBuilder.GetOptions();
-            services.AddSingleton(optionsToAdd);
+            //var servicesToAdd = optionsBuilder.GetServices();
+            //services.Add(servicesToAdd);
+            //var optionsToAdd = optionsBuilder.GetOptions();
+            //services.AddSingleton(optionsToAdd);
 
             // Add main client
+            services.AddSingleton<IEventStore, EventStore>();
+            services.AddSingleton<ISnapshotStore, SnapshotStore>();
             services.AddSingleton<CaptrClient>();
 
             return services;

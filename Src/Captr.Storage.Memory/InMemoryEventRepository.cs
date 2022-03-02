@@ -5,11 +5,10 @@ namespace Captr.Storage.Memory
 {
     public class InMemoryEventRepository : IEventRepository
     {
-        private readonly ImmutableList<EventDescriptor> _eventStorage;
+        private readonly ImmutableList<EventDescriptor> _eventStorage = ImmutableList<EventDescriptor>.Empty;
 
         public InMemoryEventRepository()
         {
-            _eventStorage = ImmutableList<EventDescriptor>.Empty;
         }
 
         /// <inheritdoc cref="IEventRepository.AppendEventsToStreamAsync(string, int, IReadOnlyCollection{EventDescriptor}, CancellationToken)" />
